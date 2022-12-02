@@ -62,9 +62,21 @@
 		else if (phase < 1){
 			phase ="waning crescent"
 		}
-		else if (phase === 1){
-			phase ="full moon"
+		else if (phase === 1){ 
+			phase ="new moon"
 		}
+		for (let i=0;i<response.days.length;i++){
+			if (response.days[i].moonphase === 0.5){
+				let fullDay = i
+				$moonAge.text(fullDay + ' days until the full moon.')
+				break
+			}
+			else if (response.days[i].moonphase === 0 || response.days[i].moonphase===1){
+				let fullDay= i
+				$moonAge.text(fullDay + ' days until the new moon.') 
+			}	
+		}
+		
 		  $phaseData.text(phase);
 		  //$moonAge.text(Math.floor(response.phaseAcuge) + " days since the new moon.");
 		}
@@ -82,7 +94,7 @@
 		$distance.text(
 		  "lunar altitude: " + Math.floor(response.moon_distance) + "km");
 
-
+		
 
 
 		  function toMilis(target) {
@@ -147,7 +159,7 @@
 				}
 				$moonTimes.text(moonMessage)  
 			}
-		 
+			
 		})
 	}
 	  
