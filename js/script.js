@@ -1,5 +1,5 @@
 ////// DO NOT TOUCH this is the api setting for retrieving the phase///////
-const settings = {
+/*const settings = {
 	async: true,
 	crossDomain: true,
 	url: `https://moon-api1.p.rapidapi.com/phase?&angle-units=deg`,
@@ -9,7 +9,8 @@ const settings = {
 	  "X-RapidAPI-Host": "moon-api1.p.rapidapi.com",
 	},
   };
-  
+  */
+  const phaseURL = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/New%20York,NY?key=L68MCR9UJUVED9GMGL8UXUUYW&elements=moonphase"
   //////// this is the API url for all other data
   
   const timeURL =
@@ -33,11 +34,39 @@ const settings = {
   
   function handleGetData() {
 	function handleGetPhase() {
-	  $.ajax(settings).then(function (response) {
+	  $.ajax(phaseURL).then(function (response) {
 		if (response) {
 		  console.log(response);
-		  $phaseData.text(response.phaseName);
-		  $moonAge.text(Math.floor(response.phaseAge) + " days since the new moon.");
+		let phase = response.currentConditions.moonphase
+		if (phase === 0) {
+			phase ="new moon"
+		}
+		else if ( phase < 0.25){
+			phase ="waxing crescent"	
+		} 
+		else if (phase === 0.25){
+			phase ="first quarter"
+		}
+		else if (phase < 0.5){
+			phase ="waxing gibbous"
+		}
+		else if (phase === 0.5){
+			phase ="full moon"
+		}
+		else if (phase < 0.75){
+			phase ="waning gibbous"
+		}
+		else if (phase ===0.75){
+			phase ="last quarter"
+		}
+		else if (phase < 1){
+			phase ="waning crescent"
+		}
+		else if (phase === 1){
+			phase ="full moon"
+		}
+		  $phaseData.text(phase);
+		  //$moonAge.text(Math.floor(response.phaseAcuge) + " days since the new moon.");
 		}
 	  });
 	}
