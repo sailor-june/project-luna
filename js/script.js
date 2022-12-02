@@ -113,7 +113,7 @@ const settings = {
 				else if (miliLocal > miliMoonset && miliLocal < miliMoonrise){
 					moonMessage = "time until moonrise: "+ toStandard(miliMoonset - miliLocal)
 				}
-				else if (miliLocal>miliMoonrise){
+				else if (miliLocal>miliMoonrise && miliLocal > miliMoonset){
 					moonMessage="time until moonset: "+toStandard((miliDay - miliLocal) + miliMoonset )
 				}
 				$moonTimes.text(moonMessage)  
