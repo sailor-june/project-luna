@@ -1,3 +1,5 @@
+@import url('https://fonts.cdnfonts.com/css/the-moon');
+
 body {
     background-color: #c5c0cd;
     height: 100vh;
@@ -5,7 +7,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-family: 'Nunito Sans', sans-serif; 
+    font-family: 'The moon', sans-serif; 
     background-image: url(/img/pitr-bunny-icon.svg) ;
     background-repeat: no-repeat;
     background-size: 40vh;
@@ -40,13 +42,21 @@ body > h1{
     margin: 0;
     justify-content: center;
 }
-#btn{
-    height: 5%;
-    border-radius: 50px;
-    width: 10%;
-    justify-self: flex-end;
+#container>div:hover{
+    box-shadow: 0px 4px 5px 3px white;
+    text-shadow: 1px 1px 1px white, -1px -1px 1px white;
 }
-
+#btn{
+    background-color: #dfeff0;
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+    
+}
+#btn:hover{
+    cursor:pointer;
+    box-shadow: 0px 0px 5px 3px white;
+}
 
 #upper{
     height: 33%;

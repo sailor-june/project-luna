@@ -5,5 +5,6 @@ project luna is a simple and streamlined interface for requesting lunar data.
 
 the goal of this project is to provide useful information about the moon in an elegant and easy to read format.
 
-data about the moon is acquired from external apis, and rendered into a concise and logical format.
+data about the moon are acquired from external apis, and rendered into a concise and logical display.
 
+simply enter your location in the text bar at the bottom of the page, and press the button to retrieve your data.

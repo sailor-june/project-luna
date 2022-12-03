@@ -5,11 +5,12 @@ const $input = $("#input");
 const $moonTimes = $("#moonTimes");
 const $sunTimes = $("#sunTimes");
 const $phaseData = $("#phaseData");
-const $btn = $("button");
+const $btn = $("#btn");
 const $localTime = $("#localTime");
 const $moonAge = $("#moonAge");
 const $distance = $("#distance");
-const $queryLoc = $('#queryLocation')
+const $queryLoc = $("#queryLocation")
+const $date = $('#date')
 /////evt listeners////////
 
 $btn.on("click", handleGetData);
@@ -77,6 +78,7 @@ function handleGetData() {
     function handleGetTimeData() {
       $.ajax(timeURL).then(function (response) {
         console.log(response);
+        $date.text(response.date)
         $localTime.text("current time: " + response.current_time);
         $distance.text(
           "lunar altitude: " + Math.floor(response.moon_distance) + "km"
