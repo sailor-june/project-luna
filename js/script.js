@@ -73,7 +73,8 @@
 			}
 			else if (response.days[i].moonphase === 0 || response.days[i].moonphase===1){
 				let fullDay= i
-				$moonAge.text(fullDay + ' days until the new moon.') 
+				$moonAge.text(fullDay + ' days until the new moon.')
+				break 
 			}	
 		}
 		
@@ -85,7 +86,7 @@
   
 	function handleGetTimeData() {
 	  $.ajax(timeURL).then(function (response) {
-		
+		console.log(response)
 		$localTime.text("current time: " + response.current_time);
 		$moonTimes.text(
 		  "moonrise: " + response.moonrise + "  moonset: " + response.moonset);
@@ -126,36 +127,36 @@
 		 
 		 
 			if (miliLocal > miliSunset) {
-			sunMessage =  " time until sunrise = " + toStandard((miliDay - miliLocal) + miliSunrise);
+			sunMessage =  " time until sunrise : " + toStandard((miliDay - miliLocal) + miliSunrise);
 		  } else if (miliLocal < miliSunset && miliLocal > miliSunrise) {
-			sunMessage = "time until sunset = " +toStandard((miliSunset - miliLocal));
+			sunMessage = "time until sunset : " +toStandard((miliSunset - miliLocal));
 		  } else if (miliLocal < miliSunrise) {
-			sunMessage = "time until sunrise = " + toStandard((miliSunrise - miliLocal));
+			sunMessage = "time until sunrise : " + toStandard((miliSunrise - miliLocal));
 		  }
 		  $sunTimes.text(sunMessage);
 		
 			if (miliMoonrise < miliMoonset){
 				console.log('alpha')
 				if (miliLocal < miliMoonrise) {
-					moonMessage = "time until moonrise: " + toStandard(miliMoonrise-miliLocal)
+					moonMessage = "time until moonrise : " + toStandard(miliMoonrise-miliLocal)
 			} 	else if (miliLocal > miliMoonrise && miliLocal < miliMoonset){
-					moonMessage = "time until moonset: "+ toStandard(miliMoonset - miliLocal)
+					moonMessage = "time until moonset : "+ toStandard(miliMoonset - miliLocal)
 			}
 				else if (miliLocal > miliMoonset){
-					moonMessage = "time until moonrise: " + (toStandard(miliDay - miliLocal)+miliMoonrise)
+					moonMessage = "time until moonrise : " + (toStandard(miliDay - miliLocal)+miliMoonrise)
 			}
 			$moonTimes.text = moonMessage  
 			}
 			else if (miliMoonset < miliMoonrise){
 				console.log('beta')
 				if (miliLocal < miliMoonset){
-					moonMessage = "time until moonset: "+ toStandard(miliMoonset - miliLocal)
+					moonMessage = "time until moonset : "+ toStandard(miliMoonset - miliLocal)
 				}
 				else if (miliLocal > miliMoonset && miliLocal < miliMoonrise){
-					moonMessage = "time until moonrise: "+ toStandard(miliMoonset - miliLocal)
+					moonMessage = "time until moonrise : "+ toStandard(miliMoonrise - miliLocal)
 				}
 				else if (miliLocal>miliMoonrise && miliLocal > miliMoonset){
-					moonMessage="time until moonset: "+toStandard((miliDay - miliLocal) + miliMoonset )
+					moonMessage="time until moonset : "+toStandard((miliDay - miliLocal) + miliMoonset )
 				}
 				$moonTimes.text(moonMessage)  
 			}
