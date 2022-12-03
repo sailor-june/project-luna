@@ -9,10 +9,15 @@ body {
     background-image: url(/img/pitr-bunny-icon.svg) ;
     background-repeat: no-repeat;
     background-size: 40vh;
+    text-shadow: 0px 0px 2px white, 0px 0px 5px  darkslategray ;
 }
 body > img {
     background: transparent;
     justify-self: center;
+
+}
+body > h1{
+    justify-self: flex-start;
 
 }
 
