@@ -11,6 +11,7 @@ const $moonAge = $("#moonAge");
 const $distance = $("#distance");
 const $queryLoc = $("#queryLocation")
 const $date = $('#date')
+const $thesun = $('#thesun')
 /////evt listeners////////
 
 $btn.on("click", handleGetData);
@@ -32,7 +33,9 @@ function handleGetData() {
     function handleGetPhase() {
       $.ajax(phaseURL).then(function (response) {
         if (response) {
-		  $queryLoc.text(response.resolvedAddress)
+      /////////////////////////////////////
+      
+          $queryLoc.text(response.resolvedAddress)
           console.log(response);
           let phase = response.currentConditions.moonphase;
           if (phase === 0) {
@@ -122,6 +125,18 @@ function handleGetData() {
         }
         $sunTimes.text(sunMessage);
 
+        if (miliLocal > miliSunrise){
+          $thesun.addClass('sunout')
+          $thesun.removeClass('invisible')
+        }
+        if (miliLocal > miliSunset){
+          $thesun.removeClass('sunout')
+          $thesun.addClass('invisible')
+        }
+
+
+
+      
         if (miliMoonrise < miliMoonset) {
           console.log("alpha");
           if (miliLocal < miliMoonrise) {
@@ -151,6 +166,10 @@ function handleGetData() {
           }
           $moonTimes.text(moonMessage);
         }
+
+        
+
+
       });
     }
   }
