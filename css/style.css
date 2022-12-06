@@ -3,7 +3,7 @@
 body {
     background: linear-gradient(#8bb4c7, #afc7ce, #fffee4, #f9f0bc, #e8bbbe, #dfa5a6);
     height: 100vh;
-    width: 100vh;;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,8 +23,8 @@ body > h1{
     box-shadow: 0px 0px 5px 4px #bac9b2, 0px 0px 10px 4px black;
     padding: 1%;
     display:flex;
+    align-self: center;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
     background-color: #96bfc2;
     height: 70%;
@@ -41,6 +41,7 @@ body > h1{
 }
 
 #upper{
+    word-wrap: normal;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -190,6 +191,7 @@ justify-content: space-between;
     box-shadow: inset 20px -5px 15px 0 paleturquoise, inset 0px 0px 0px #ecc3c0, -8px 0px 5px white;
     background: (transparent);
 }
+
 
 .invisible{
     display: none;

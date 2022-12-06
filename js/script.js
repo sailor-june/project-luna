@@ -73,7 +73,7 @@ function handleGetData() {
           for (let i = 0; i < response.days.length; i++) {
             let phaseNum = response.days[i].moonphase
             if (phaseNum === 0.25){
-              $moonAge.text(i + " days until first quarter.")
+              $moonAge.text(`${i}  days until first quarter.`)
               break;
             } 
 			      else if (phaseNum === 0.5) {
