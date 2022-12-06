@@ -11,14 +11,15 @@ simply enter your location in the text bar at the bottom of the page, and press 
 
 
 ## technologies used
-html5
-css3
-jquery
-weather api from visualcrossing.com
-astronomy api from ipgeolocation.io
-'the moon' font from cdnfonts.com
+-html5
+-css3
+-jquery
+-weather api from visualcrossing.com
+-astronomy api from ipgeolocation.io
+-'the moon' font from cdnfonts.com
 
 ![](./img/about.png)
+
 [click here](https://sailor-june.github.io/project-luna/) to try it out!
 
 
