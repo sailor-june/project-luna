@@ -18,7 +18,7 @@ weather api from visualcrossing.com
 astronomy api from ipgeolocation.io
 'the moon' font from cdnfonts.com
 
-[](./img/about.png)
+![](./img/about.png)
 [click here](https://sailor-june.github.io/project-luna/) to try it out!
 
 
