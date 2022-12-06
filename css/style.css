@@ -55,6 +55,12 @@ body > h1{
     text-shadow: 1px 1px 1px white, -1px -1px 1px white;
     border-bottom: 0;
 }
+#celestial{
+    display: flex;
+    flex-direction: row;
+    
+}
+
 #phasecontainer{
     background: transparent;
     position: absolute;
@@ -99,9 +105,7 @@ justify-content: space-between;
     
 }
 
-.invisible{
-    display: none;
-}
+
 
 .sunout{
     background-color: rgb(255, 255, 174);
@@ -110,4 +114,71 @@ justify-content: space-between;
     border-radius: 50%;
     border-style:ridge;
     border-color: rgb(250, 207, 128);
+}
+.waxc{
+    
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+    box-shadow: inset -20px -5px 15px 0 paleturquoise, inset 0px 0px 0px #ecc3c0, 8px 0px 5px white;
+    background: (transparent);
+}
+.newm{
+   
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px white ;
+    background: rgb(61, 83, 83); 
+}
+
+.firstq{
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+    background: linear-gradient(to left, paleturquoise, transparent 60%);
+    box-shadow: 8px 0px 5px white;
+}
+.waxg{
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+    box-shadow: 20px 0px 15px #ecc3c0 inset,  8px 0px 5px white;
+    background: paleturquoise;
+}
+.fullm{
+  
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px white ;
+    background: paleturquoise;
+}
+.waneg{
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+    box-shadow: -20px 0px 15px #ecc3c0 inset, -8px 0px 5px white;
+    background: paleturquoise;
+}
+.lastq{
+
+   
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+    
+    background: linear-gradient(to right, paleturquoise, transparent 60%);
+    box-shadow: -8px 0px 5px white;
+}
+.wanec{
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+    box-shadow: inset 20px -5px 15px 0 paleturquoise, inset 0px 0px 0px #ecc3c0, -8px 0px 5px white;
+    background: (transparent);
+}
+
+.invisible{
+    display: none;
 }

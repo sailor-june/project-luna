@@ -12,6 +12,7 @@ const $distance = $("#distance");
 const $queryLoc = $("#queryLocation")
 const $date = $('#date')
 const $thesun = $('#thesun')
+const $themoon = $('#themoon')
 /////evt listeners////////
 
 $btn.on("click", handleGetData);
@@ -33,44 +34,66 @@ function handleGetData() {
     function handleGetPhase() {
       $.ajax(phaseURL).then(function (response) {
         if (response) {
-      /////////////////////////////////////
+          
+      
+        /////////////converting phase number to string////////////////////
       
           $queryLoc.text(response.resolvedAddress)
           console.log(response);
           let phase = response.currentConditions.moonphase;
           if (phase === 0) {
             phase = "new moon";
+            $themoon.addClass('newm')
           } else if (phase < 0.25) {
             phase = "waxing crescent";
+            $themoon.addClass("waxc")
           } else if (phase === 0.25) {
             phase = "first quarter";
+            $themoon.addClass('firstq')
           } else if (phase < 0.5) {
             phase = "waxing gibbous";
+            $themoon.addClass('waxg')
           } else if (phase === 0.5) {
             phase = "full moon";
+            $themoon.addClass('fullm')
           } else if (phase < 0.75) {
             phase = "waning gibbous";
+            $themoon.addClass('waneg')
           } else if (phase === 0.75) {
             phase = "last quarter";
+            $themoon.addClass('lastq')
           } else if (phase < 1) {
             phase = "waning crescent";
+            $themoon.addClass('wanec')
           } else if (phase === 1) {
             phase = "new moon";
+            $themoon.addClass('newm')
           }
+          //////calculating time until next event/////////
           for (let i = 0; i < response.days.length; i++) {
-			if (response.days[i].moonphase === 0.5) {
-              let fullDay = i;
-              $moonAge.text(fullDay + " days until the full moon.");
+            let phaseNum = response.days[i].moonphase
+            if (phaseNum === 0.25){
+              $moonAge.text(i + " days until first quarter.")
               break;
-            } else if (
-              response.days[i].moonphase === 0 ||
-              response.days[i].moonphase === 1
-            ) {
+            } 
+			      else if (phaseNum === 0.5) {
+              $moonAge.text(i+ " days until the full moon.");
+              break;
+            }
+            else if (phaseNum === 0.75){
+              $moonAge.text(i + " days until last quarter.")
+            } 
+            else if (phaseNum === 0 ||phaseNum === 1){
               let fullDay = i;
-              $moonAge.text(fullDay + " days until the new moon.");
+              $moonAge.text(i + " days until the new moon.");
               break;
             }
           }
+
+
+
+
+
 
           $phaseData.text(phase);
           //$moonAge.text(Math.floor(response.phaseAcuge) + " days since the new moon.");
@@ -87,6 +110,7 @@ function handleGetData() {
           "lunar altitude: " + Math.floor(response.moon_distance) + "km"
         );
 
+        ///////ms conversion functions///////
         function toMilis(target) {
           let hh = parseInt(target.slice(0, 3));
           let mm = parseInt(target.slice(3, 5));
@@ -95,14 +119,13 @@ function handleGetData() {
           let output = hh + mm;
           return output;
         }
-
         function toStandard(target) {
           let minutes = target / 1000 / 60;
           let hours = Math.floor(minutes / 60);
           minutes = Math.floor((minutes % 60) * (60 / 100));
           return `${hours} hours and ${minutes} minutes`;
         }
-
+        ////////storing all time data as miliseconds /////////////////
         let miliDay = toMilis("24:00");
         let miliLocal = toMilis(response.current_time);
         let miliMoonset = toMilis(response.moonset);
@@ -112,19 +135,24 @@ function handleGetData() {
         let sunMessage = "";
         let moonMessage = "";
 
+
+
+
+        ////////////////// displaying sun times //////////
         if (miliLocal > miliSunset) {
           sunMessage =
-            " time until sunrise : " +
+            "The sun will rise in " +
             toStandard(miliDay - miliLocal + miliSunrise);
         } else if (miliLocal < miliSunset && miliLocal > miliSunrise) {
           sunMessage =
-            "time until sunset : " + toStandard(miliSunset - miliLocal);
+            "The sun will set in " + toStandard(miliSunset - miliLocal);
         } else if (miliLocal < miliSunrise) {
           sunMessage =
-            "time until sunrise : " + toStandard(miliSunrise - miliLocal);
+            "The sun will rise in " + toStandard(miliSunrise - miliLocal);
         }
         $sunTimes.text(sunMessage);
 
+        ////////////// sun graphic toggle ////////////
         if (miliLocal > miliSunrise){
           $thesun.addClass('sunout')
           $thesun.removeClass('invisible')
@@ -134,35 +162,44 @@ function handleGetData() {
           $thesun.addClass('invisible')
         }
 
-
-
+        //////////////  //////////  ////////////
+        ///if the moon sets before midnight: //
       
         if (miliMoonrise < miliMoonset) {
-          console.log("alpha");
+          
           if (miliLocal < miliMoonrise) {
             moonMessage =
-              "time until moonrise : " + toStandard(miliMoonrise - miliLocal);
+              "The moon will rise in " + toStandard(miliMoonrise - miliLocal);
+              $themoon.addClass('invisible')
           } else if (miliLocal > miliMoonrise && miliLocal < miliMoonset) {
             moonMessage =
-              "time until moonset : " + toStandard(miliMoonset - miliLocal);
+              "The moon will set in" + toStandard(miliMoonset - miliLocal)
+              $themoon.removeClass('invisible');
           } else if (miliLocal > miliMoonset) {
             moonMessage =
-              "time until moonrise : " +
-              (toStandard(miliDay - miliLocal) + miliMoonrise);
+              "The moon will rise in " +
+              toStandard((miliDay - miliLocal) + miliMoonrise);
+            $themoon.addClass('invisible')
           }
           $moonTimes.text = moonMessage;
+          ////////////////////////////////////
+          //if the moon sets after midnight://
+        
         } else if (miliMoonset < miliMoonrise) {
-          console.log("beta");
+          
           if (miliLocal < miliMoonset) {
             moonMessage =
-              "time until moonset : " + toStandard(miliMoonset - miliLocal);
+              "The moon will set in " + toStandard(miliMoonset - miliLocal);
+              $themoon.removeClass('invisible')
           } else if (miliLocal > miliMoonset && miliLocal < miliMoonrise) {
             moonMessage =
-              "time until moonrise : " + toStandard(miliMoonrise - miliLocal);
+              "The moon will rise in " + toStandard(miliMoonrise - miliLocal);
+              $themoon.addClass('invisible')
           } else if (miliLocal > miliMoonrise && miliLocal > miliMoonset) {
             moonMessage =
-              "time until moonset : " +
-              toStandard(miliDay - miliLocal + miliMoonset);
+              "The moon will set in " +
+              toStandard((miliDay - miliLocal) + miliMoonset);
+              $themoon.removeClass('invisible')
           }
           $moonTimes.text(moonMessage);
         }
