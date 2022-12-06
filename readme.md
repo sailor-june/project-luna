@@ -17,3 +17,11 @@ jquery
 weather api from visualcrossing.com
 astronomy api from ipgeolocation.io
 'the moon' font from cdnfonts.com
+
+[](./img/about.png)
+[click here](https://sailor-june.github.io/project-luna/) to try it out!
+
+
+designed by juniper c. james 
+junipercjames@gmail.com
+https://www.linkedin.com/in/juniper-james-36467b257/
