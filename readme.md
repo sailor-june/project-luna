@@ -8,3 +8,12 @@ the goal of this project is to provide useful information about the moon in an e
 data about the moon are acquired from external apis, and rendered into a concise and logical display.
 
 simply enter your location in the text bar at the bottom of the page, and press the button to retrieve your data.
+
+
+## technologies used
+html5
+css3
+jquery
+weather api from visualcrossing.com
+astronomy api from ipgeolocation.io
+'the moon' font from cdnfonts.com
