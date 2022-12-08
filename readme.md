@@ -22,6 +22,11 @@ simply enter your location in the text bar at the bottom of the page, and press 
 
 [click here](https://sailor-june.github.io/project-luna/) to try it out!
 
+## what's next?
+coming features include:
+- colorblind mode and other accessability features
+- dynamic backgrounds reflecting time and other data
+- "find the moon" feature 
 
 designed by juniper c. james 
 junipercjames@gmail.com
