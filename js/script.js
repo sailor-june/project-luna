@@ -95,9 +95,9 @@ function handleGetData() {
       $.ajax(timeURL).then(function (response) {
         console.log(response);
         $date.text(response.date);
-        $localTime.text("current time: " + response.current_time);
+        $localTime.text(`current time:  ${response.current_time}`);
         $distance.text(
-          "lunar altitude: " + Math.floor(response.moon_distance) + "km"
+          `the moon is ${Math.floor(response.moon_distance)} km from the earth.`
         );
 
         ///////ms conversion functions///////
@@ -128,13 +128,13 @@ function handleGetData() {
         ////////////////// displaying sun times //////////
         if (miliLocal > miliSunset) {
           sunMessage =
-            `The sun will rise in ${toStandard(miliDay-miliLocal+miliSunrise)}`;
+            `The sun will rise in ${toStandard(miliDay-miliLocal+miliSunrise)}.`;
         } else if (miliLocal < miliSunset && miliLocal > miliSunrise) {
           sunMessage =
-            `The sun will set in ${toStandard(miliSunset - miliLocal)}`;
+            `The sun will set in ${toStandard(miliSunset - miliLocal)}.`;
         } else if (miliLocal < miliSunrise) {
           sunMessage =
-            `The sun will rise in ${toStandard(miliSunrise - miliLocal)}`;
+            `The sun will rise in ${toStandard(miliSunrise - miliLocal)}.`;
         }
         $sunTimes.text(sunMessage);
 
@@ -171,15 +171,15 @@ function handleGetData() {
         } else if (miliMoonset < miliMoonrise) {
           if (miliLocal < miliMoonset) {
             moonMessage =
-              `The moon will set in ${toStandard(miliMoonset - miliLocal)}`;
+              `The moon will set in ${toStandard(miliMoonset - miliLocal)}.`;
             $themoon.removeClass("invisible");
           } else if (miliLocal > miliMoonset && miliLocal < miliMoonrise) {
             moonMessage =
-              `The moon will rise in ${toStandard(miliMoonrise - miliLocal)}`;
+              `The moon will rise in ${toStandard(miliMoonrise - miliLocal)}.`;
             $themoon.addClass("invisible");
           } else if (miliLocal > miliMoonrise && miliLocal > miliMoonset) {
             moonMessage =
-              `The moon will set in ${toStandard(miliDay - miliLocal + miliMoonset)}`;
+              `The moon will set in ${toStandard(miliDay - miliLocal + miliMoonset)}.`;
             $themoon.removeClass("invisible");
           }
           $moonTimes.text(moonMessage);
